@@ -13,27 +13,42 @@ export default function ArticleCard({ article, index }) {
       }}
     >
       <div className="card-source">
-        {/* {article.source} */}
-        {/* <span className="card-sep">/</span> */}
-        <span className="card-time">{relativeTime(article.pub_date)}</span>
+        <span className="card-time">
+          <i className="fa-regular fa-clock" style={{ marginRight: 5 }} />
+          {relativeTime(article.pub_date)}
+        </span>
       </div>
+
       <h2 className="card-title">
         <a href={article.link} target="_blank" rel="noopener noreferrer">
           {article.title}
-          <i className="fa-solid fa-arrow-up-right-from-square" style={{ marginLeft: '8px' }}></i>
+          <i className="fa-solid fa-arrow-up-right-from-square ext-icon" />
         </a>
       </h2>
+
       <p className="card-summary">{article.summary}</p>
-      <div className="card-tags">
-        {article.tags.map(tag => (
-          <span
-            key={tag}
-            className="tag-badge"
-            style={{ color: TAG_COLORS[tag] || 'var(--text-muted)' }}
-          >
-            {tag}
-          </span>
-        ))}
+
+      <div className="card-footer">
+        <div className="card-tags">
+          {article.tags.map(tag => (
+            <span
+              key={tag}
+              className="tag-badge"
+              style={{ color: TAG_COLORS[tag] || 'var(--text-muted)' }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <a
+          href={article.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="read-link"
+          aria-label={`Read: ${article.title}`}
+        >
+          Read <i className="fa-solid fa-chevron-right" style={{ fontSize: 9 }} />
+        </a>
       </div>
     </article>
   );
